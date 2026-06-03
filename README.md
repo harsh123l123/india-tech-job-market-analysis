@@ -4,7 +4,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 - **What's inside?** 500+ tech job records from India's leading companies (MNCs, Unicorns, Startups, PSUs)
 - **Key insights:** Salary distribution by role/location/experience, top 15 in-demand skills, high-paying roles, and market trends
@@ -14,7 +14,7 @@
 
 ---
 
-## 📊 Key Findings at a Glance
+## Key Findings at a Glance
 
 | Finding | Insight |
 |---------|---------|
@@ -29,7 +29,7 @@
 
 ---
 
-## 📁 Dataset Overview
+## Dataset Overview
 
 **File:** `india_job_market_2024_2026.csv` (500+ records)
 
@@ -44,7 +44,7 @@
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 india-tech-job-market-analysis-2024-2026.ipynb   # Main analysis notebook (18+ sections)
@@ -55,7 +55,7 @@ README.md                                         # This file
 
 ---
 
-## ⚙️ Setup & Usage
+## Setup & Usage
 
 ### Requirements
 - **Python 3.8+**
@@ -67,7 +67,7 @@ README.md                                         # This file
 **Step 1: Clone or download this repository**
 ```bash
 # If you have Git
-git clone <repository-url>
+git clone https://github.com/harsh123l123/india-tech-job-market-analysis.git
 cd "d:\DS & ML\job analyts"
 
 # OR manually download and extract the files
@@ -97,7 +97,7 @@ jupyter lab india-tech-job-market-analysis-2024-2026.ipynb
 
 ---
 
-## 📈 Visualizations Preview
+## Visualizations Preview
 
 The notebook includes 18+ publication-ready charts:
 
@@ -117,7 +117,7 @@ The notebook includes 18+ publication-ready charts:
 
 ---
 
-## 💼 For Career Seekers
+## For Career Seekers
 
 **How to use this analysis for your job search:**
 
@@ -132,7 +132,7 @@ The notebook includes 18+ publication-ready charts:
 
 ---
 
-## 🔬 For Data Analysts & Researchers
+## For Data Analysts & Researchers
 
 **Technical approach & reproducibility:**
 
@@ -150,7 +150,7 @@ The notebook includes 18+ publication-ready charts:
 
 ---
 
-## 📋 About the Data
+## About the Data
 
 **Data Characteristics:**
 - **Records:** 500+ job listings
@@ -173,7 +173,7 @@ The notebook includes 18+ publication-ready charts:
 
 ---
 
-## 🤝 Contributing & Feedback
+## Contributing & Feedback
 
 Have ideas to enhance this analysis? Found insights worth adding?
 
@@ -183,13 +183,13 @@ Have ideas to enhance this analysis? Found insights worth adding?
 
 ---
 
-## 📄 License
+## License
 
 This project is open for educational and research purposes. Please credit the data source when sharing findings.
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 - **Start analyzing:** Run the notebook to generate all 18+ charts and insights
 - **Filter the CSV:** Use any spreadsheet tool (Excel, Google Sheets) or Python/R for custom queries
@@ -199,6 +199,4 @@ This project is open for educational and research purposes. Please credit the da
 
 **Last Updated:** June 2026 | **Data Coverage:** 2024-2026
 
-Happy exploring! 🎯
-#   i n d i a - t e c h - j o b - m a r k e t - a n a l y s i s  
- 
+
