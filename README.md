@@ -48,10 +48,22 @@
 
 ```
 india-tech-job-market-analysis-2024-2026.ipynb   # Main analysis notebook (18+ sections)
+india_job_market_analysis.py                     # Python module with reusable functions
 dataset/
 ├── india_job_market_2024_2026.csv                # Raw data (500+ records)
 README.md                                         # This file
 ```
+
+---
+
+## Files Description
+
+| File | Purpose | Format |
+|------|---------|--------|
+| **india-tech-job-market-analysis-2024-2026.ipynb** | Main interactive analysis notebook with 18+ visualizations, insights, and findings. Run this to explore salary trends, skills demand, top employers, geographic distribution, and career progression. Includes markdown explanations between cells for context. | Jupyter Notebook (.ipynb) |
+| **india_job_market_analysis.py** | Python module containing reusable functions for data loading, preprocessing, and analysis. Imported by the notebook and can be used in other scripts. Includes: `load_data()`, `preprocess_data()`, `explore_data()`, and visualization functions. | Python Script (.py) |
+| **dataset/india_job_market_2024_2026.csv** | Raw dataset with 500+ job records from India's tech sector (2024-2026). Contains job details, company info, salary, location, experience level, skills required, and application metrics. Ready for analysis without preprocessing (though optional cleaning improves results). | CSV Data File (.csv) |
+| **README.md** | Project documentation including quick start guide, key findings, dataset overview, setup instructions, visualization previews, and career/research guidance. (This file) | Markdown (.md) |
 
 ---
 
