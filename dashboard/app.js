@@ -24,7 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadData() {
     try {
-        const response = await fetch('../dataset/india_job_market_2024_2026.csv');
+        // Dynamically resolve dataset path to prevent trailing slash issues on hosted environments like GitHub Pages
+        const pathParts = window.location.pathname.split('/');
+        const dashboardIndex = pathParts.indexOf('dashboard');
+        let csvPath = '../dataset/india_job_market_2024_2026.csv';
+        if (dashboardIndex !== -1) {
+            const basePath = pathParts.slice(0, dashboardIndex).join('/');
+            csvPath = (basePath ? basePath : '') + '/dataset/india_job_market_2024_2026.csv';
+        }
+        
+        const response = await fetch(csvPath);
         if (!response.ok) {
             throw new Error(`Failed to fetch CSV: ${response.statusText}`);
         }
