@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Tech Job Market Dashboard (2024-2026)</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation & Filters -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <i class="fa-solid fa-chart-line logo-icon"></i>
+                    <h2>IndiTech <span class="accent-text">Jobs</span></h2>
+                </div>
+                <p class="subtitle">Market Analysis (2024-2026)</p>
+            </div>
+            
+            <div class="filter-section">
+                <div class="section-title">
+                    <i class="fa-solid fa-sliders"></i>
+                    <h3>Filter Insights</h3>
+                    <button id="reset-filters-btn" class="text-btn" title="Reset all filters">Reset</button>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filter-title">Job Title</label>
+                    <div class="select-wrapper">
+                        <select id="filter-title">
+                            <option value="">All Job Titles</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-experience">Experience Level</label>
+                    <div class="select-wrapper">
+                        <select id="filter-experience">
+                            <option value="">All Experience Levels</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-city">City / Region</label>
+                    <div class="select-wrapper">
+                        <select id="filter-city">
+                            <option value="">All Cities</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-workmode">Work Mode</label>
+                    <div class="select-wrapper">
+                        <select id="filter-workmode">
+                            <option value="">All Work Modes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-companytype">Company Type</label>
+                    <div class="select-wrapper">
+                        <select id="filter-companytype">
+                            <option value="">All Company Types</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-industry">Industry / Sector</label>
+                    <div class="select-wrapper">
+                        <select id="filter-industry">
+                            <option value="">All Industries</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <p><i class="fa-solid fa-calendar-days"></i> Data Span: 2024 - 2026</p>
+                <p id="data-count-info">Loading records...</p>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-nav">
+                <div class="header-left">
+                    <h1>Tech Market Intelligence</h1>
+                    <p class="text-muted">A dynamic visualization of salary trends, skill requirements, and employment patterns across India's top tech firms.</p>
+                </div>
+                <div class="header-right">
+                    <div class="data-pulse-container">
+                        <span class="pulse-dot"></span>
+                        <span class="pulse-label">Data Active: 5,000+ Postings</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content Tabs -->
+            <div class="tabs-container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="dashboard-tab">
+                        <i class="fa-solid fa-gauge-high"></i> Executive Summary
+                    </button>
+                    <button class="tab-btn" data-tab="calculator-tab">
+                        <i class="fa-solid fa-calculator"></i> Salary & Skill Gap Estimator
+                    </button>
+                    <button class="tab-btn" data-tab="explorer-tab">
+                        <i class="fa-solid fa-briefcase"></i> Job Postings Explorer
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB 1: EXECUTIVE SUMMARY -->
+            <section id="dashboard-tab" class="tab-content active">
+                <!-- KPI Dashboard Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-icon-wrapper blue-gradient">
+                            <i class="fa-solid fa-users-viewfinder"></i>
+                        </div>
+                        <div class="kpi-details">
+                            <h4 class="kpi-value" id="kpi-total-jobs">-</h4>
+                            <p class="kpi-label">Active Job Openings</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-icon-wrapper green-gradient">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                        </div>
+                        <div class="kpi-details">
+                            <h4 class="kpi-value" id="kpi-median-salary">-</h4>
+                            <p class="kpi-label">Median Salary (LPA)</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-icon-wrapper purple-gradient">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="kpi-details">
+                            <h4 class="kpi-value" id="kpi-avg-rating">-</h4>
+                            <p class="kpi-label">Avg Company Rating</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-icon-wrapper orange-gradient">
+                            <i class="fa-solid fa-file-signature"></i>
+                        </div>
+                        <div class="kpi-details">
+                            <h4 class="kpi-value" id="kpi-avg-applicants">-</h4>
+                            <p class="kpi-label">Avg Applicants / Job</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid-main">
+                    <!-- Chart 1: Salary Distribution -->
+                    <div class="chart-card glass-card span-2">
+                        <div class="card-header">
+                            <h3>Salary Distribution Curve</h3>
+                            <p class="card-subtitle">Frequency of jobs by salary range in LPA</p>
+                        </div>
+                        <div class="chart-container-wrapper">
+                            <canvas id="chart-salary-dist"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2: Experience vs Median Salary -->
+                    <div class="chart-card glass-card">
+                        <div class="card-header">
+                            <h3>Experience vs. Salary Premium</h3>
+                            <p class="card-subtitle">Median salary (LPA) by seniority level</p>
+                        </div>
+                        <div class="chart-container-wrapper">
+                            <canvas id="chart-exp-salary"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 3: Top Demand Skills -->
+                    <div class="chart-card glass-card">
+                        <div class="card-header">
+                            <h3>Top 10 In-Demand Skills</h3>
+                            <p class="card-subtitle">Skills appearing most frequently in listings</p>
+                        </div>
+                        <div class="chart-container-wrapper">
+                            <canvas id="chart-top-skills"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 4: Work Mode vs Company Type -->
+                    <div class="chart-card glass-card">
+                        <div class="card-header">
+                            <h3>Work Mode Distribution</h3>
+                            <p class="card-subtitle">Share of Remote, Hybrid, and On-Site roles</p>
+                        </div>
+                        <div class="chart-container-wrapper pie-wrapper">
+                            <canvas id="chart-workmode-share"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 5: Company Type Distribution -->
+                    <div class="chart-card glass-card">
+                        <div class="card-header">
+                            <h3>Company Type Distribution</h3>
+                            <p class="card-subtitle">Jobs split by MNCs, Unicorns, Startups, and PSUs</p>
+                        </div>
+                        <div class="chart-container-wrapper pie-wrapper">
+                            <canvas id="chart-companytype-share"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 6: Geographic Job Hotspots -->
+                    <div class="chart-card glass-card span-2">
+                        <div class="card-header">
+                            <h3>Geographic Hubs & Salary Benchmarks</h3>
+                            <p class="card-subtitle">Top cities by posting volume and their median salary LPA</p>
+                        </div>
+                        <div class="chart-container-wrapper">
+                            <canvas id="chart-city-hubs"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: SALARY & SKILL GAP ESTIMATOR -->
+            <section id="calculator-tab" class="tab-content">
+                <div class="calculator-layout">
+                    <!-- Input Section -->
+                    <div class="calc-input-panel glass-card">
+                        <div class="panel-header">
+                            <h2>Estimate Your Salary Potential</h2>
+                            <p class="panel-subtitle">Select your details to receive personalized career insights based on market listings.</p>
+                        </div>
+                        
+                        <div class="calc-form">
+                            <div class="form-group">
+                                <label for="calc-role"><i class="fa-solid fa-user-tag"></i> Target Role</label>
+                                <div class="select-wrapper">
+                                    <select id="calc-role">
+                                        <option value="">Select a Role...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="calc-exp"><i class="fa-solid fa-graduation-cap"></i> Experience Level</label>
+                                <div class="select-wrapper">
+                                    <select id="calc-exp">
+                                        <option value="">Select Experience...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fa-solid fa-bolt"></i> Your Current Skills (Select multiple)</label>
+                                <div class="skills-search-container">
+                                    <input type="text" id="skills-search-input" placeholder="Search skills...">
+                                    <div class="skills-dropdown-list" id="skills-dropdown-list">
+                                        <!-- Dynamically populated skills checkboxes -->
+                                    </div>
+                                </div>
+                                <div class="selected-skills-tags" id="selected-skills-tags">
+                                    <!-- Selected skills will render as removable tags -->
+                                    <span class="no-skills-msg">No skills selected yet.</span>
+                                </div>
+                            </div>
+
+                            <button id="calculate-btn" class="primary-btn">
+                                <i class="fa-solid fa-circle-play"></i> Run Estimator
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Output Results Section -->
+                    <div class="calc-output-panel">
+                        <div class="glass-card result-container hidden" id="calc-result-placeholder">
+                            <div class="placeholder-content">
+                                <i class="fa-solid fa-chart-pie placeholder-icon"></i>
+                                <h3>Calculation Dashboard</h3>
+                                <p>Fill out the form on the left and click "Run Estimator" to analyze your position in the current job market.</p>
+                            </div>
+                        </div>
+
+                        <div class="result-details-grid hidden" id="calc-result-container">
+                            <!-- Main Metric Card -->
+                            <div class="glass-card main-metric-card">
+                                <span class="badge">Estimated Market Value</span>
+                                <h1 class="salary-estimate" id="calc-est-salary">₹--.- <span class="lpa-unit">LPA</span></h1>
+                                <p class="salary-range-label" id="calc-est-range">Market range: ₹-- - ₹-- LPA</p>
+                                <hr class="divider">
+                                <div class="rating-box">
+                                    <span class="rating-stars" id="calc-market-rating-stars"></span>
+                                    <span class="rating-label" id="calc-market-demand">Demand Status: -</span>
+                                </div>
+                            </div>
+
+                            <!-- Skill Gap Card -->
+                            <div class="glass-card skill-gap-card">
+                                <h3><i class="fa-solid fa-route"></i> High-Value Skills to Learn</h3>
+                                <p class="card-subtitle">Skills associated with higher salaries for this role that you haven't selected:</p>
+                                <div class="skill-gap-list" id="calc-skill-gaps">
+                                    <!-- Skill gaps populated here -->
+                                </div>
+                            </div>
+
+                            <!-- Top Matches Card -->
+                            <div class="glass-card matches-card span-2">
+                                <h3><i class="fa-solid fa-building-circle-check"></i> High-Match Companies Hiring</h3>
+                                <p class="card-subtitle">Leading employers currently offering jobs for this profile</p>
+                                <div class="matches-grid" id="calc-top-employers">
+                                    <!-- Companies matches populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: JOB POSTINGS EXPLORER -->
+            <section id="explorer-tab" class="tab-content">
+                <div class="explorer-layout glass-card">
+                    <!-- Table Search & Toolbar -->
+                    <div class="explorer-toolbar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="job-search" placeholder="Search by title, company, or skills...">
+                        </div>
+                        <div class="toolbar-actions">
+                            <div class="sort-selector-wrapper">
+                                <label for="table-sort-by">Sort By:</label>
+                                <div class="select-wrapper short">
+                                    <select id="table-sort-by">
+                                        <option value="Date_Posted-desc">Date Posted (Newest)</option>
+                                        <option value="Salary_LPA-desc">Salary (Highest)</option>
+                                        <option value="Salary_LPA-asc">Salary (Lowest)</option>
+                                        <option value="Applicants-desc">Applicants (Highest)</option>
+                                        <option value="Company_Rating-desc">Company Rating</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Listings Table -->
+                    <div class="table-container">
+                        <table class="job-table">
+                            <thead>
+                                <tr>
+                                    <th>Job Title</th>
+                                    <th>Company</th>
+                                    <th>Industry</th>
+                                    <th>City</th>
+                                    <th>Work Mode</th>
+                                    <th>Salary (LPA)</th>
+                                    <th>Experience</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="job-table-body">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Table Pagination -->
+                    <div class="pagination-container">
+                        <div class="pagination-info" id="pagination-info">
+                            Showing 0 to 0 of 0 entries
+                        </div>
+                        <div class="pagination-buttons">
+                            <button class="pagination-btn" id="prev-page-btn" disabled><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                            <span class="pagination-pages" id="pagination-pages">
+                                <!-- Dynamic page numbers -->
+                            </span>
+                            <button class="pagination-btn" id="next-page-btn" disabled>Next <i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Job Details Modal -->
+    <div class="modal-backdrop" id="job-detail-modal">
+        <div class="modal-container glass-card">
+            <button class="close-modal-btn" id="close-modal-btn">&times;</button>
+            <div class="modal-header">
+                <span class="modal-company-type" id="modal-company-type">Startup</span>
+                <h2 id="modal-job-title">Senior Software Engineer</h2>
+                <div class="modal-meta-row">
+                    <span id="modal-company-name"><i class="fa-solid fa-building"></i> Google</span>
+                    <span id="modal-rating"><i class="fa-solid fa-star"></i> 4.2</span>
+                    <span id="modal-industry"><i class="fa-solid fa-industry"></i> Fintech</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-details-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Salary (LPA)</span>
+                        <span class="detail-value highlighted" id="modal-salary">₹45.0 LPA</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Experience Required</span>
+                        <span class="detail-value" id="modal-experience">Senior (6-10 yrs)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Work Mode</span>
+                        <span class="detail-value" id="modal-work-mode">Hybrid (Bangalore)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Job Type</span>
+                        <span class="detail-value" id="modal-job-type">Full-Time</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Applicants</span>
+                        <span class="detail-value" id="modal-applicants">1,250 Applicants</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Openings Available</span>
+                        <span class="detail-value" id="modal-openings">3 Openings</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Education Required</span>
+                        <span class="detail-value" id="modal-education">B.Tech/B.E.</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Date Posted</span>
+                        <span class="detail-value" id="modal-date">2025-10-31</span>
+                    </div>
+                </div>
+                
+                <div class="modal-skills-section">
+                    <h3>Skills Required</h3>
+                    <div class="skills-tag-container" id="modal-skills-tags">
+                        <!-- Populated tags -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="primary-btn apply-btn" id="modal-apply-btn">
+                    <i class="fa-solid fa-paper-plane"></i> Apply For Position
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JS -->
+    <script src="app.js"></script>
+</body>
+</html>
