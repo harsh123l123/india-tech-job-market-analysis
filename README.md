@@ -2,6 +2,8 @@
 
 **Comprehensive data-driven insights into India's technology employment landscape** — explore salary trends, in-demand skills, top employers, and career opportunities across 2024-2026.
 
+⚡ **Live Interactive Web Dashboard:** [harsh123l123.github.io/india-tech-job-market-analysis/dashboard](https://harsh123l123.github.io/india-tech-job-market-analysis/dashboard/)
+
 ---
 
 ## Quick Start
@@ -203,6 +205,7 @@ This project is open for educational and research purposes. Please credit the da
 
 ## Quick Links
 
+- **Live Web Dashboard:** [Open interactive dashboard, filters, and career calculator](https://harsh123l123.github.io/india-tech-job-market-analysis/dashboard/)
 - **Start analyzing:** Run the notebook to generate all 18+ charts and insights
 - **Filter the CSV:** Use any spreadsheet tool (Excel, Google Sheets) or Python/R for custom queries
 - **Share findings:** Export charts directly from Jupyter for presentations or reports
